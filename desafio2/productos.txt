@@ -1,0 +1,8 @@
+[
+	{
+		"title": "milanesa",
+		"price": 100,
+		"thumbnail": "defaultUrl1",
+		"id": 1
+	},
+]
