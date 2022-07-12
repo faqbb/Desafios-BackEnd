@@ -72,12 +72,22 @@ let milanesa = {
     "price": 100,
     "thumbnail": "defaultUrl1"
 }
+let hamburguesa = {
+    "title": "hamburguesa",
+    "price": 150,
+    "thumbnail": "defaultUrl2"
+}
+let papasfritas = {
+    "title": "papasfritas",
+    "price": 75,
+    "thumbnail": "defaultUrl3"
+}
 
 
 const productContainer = new Container()
 const environment = async() => {
-//    let obj = await productContainer.getById(4)
-//    console.log(obj)
-//    await productContainer.deleteAll()
+    await productContainer.addProd(milanesa)
+    await productContainer.addProd(hamburguesa)
+    await productContainer.addProd(papasfritas)
 }
 environment()

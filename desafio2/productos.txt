@@ -1,1 +1,20 @@
-[]
+[
+	{
+		"title": "milanesa",
+		"price": 100,
+		"thumbnail": "defaultUrl1",
+		"id": 1
+	},
+	{
+		"title": "hamburguesa",
+		"price": 150,
+		"thumbnail": "defaultUrl2",
+		"id": 2
+	},
+	{
+		"title": "papasfritas",
+		"price": 75,
+		"thumbnail": "defaultUrl3",
+		"id": 3
+	}
+]
