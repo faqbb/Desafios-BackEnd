@@ -1,0 +1,24 @@
+<form id="prodForm" style="display: flex; flex-direction: column; margin-inline: 50rem; align-items: center;">
+    <label >Nombre</label>
+    <input name="name">
+    <label >Precio</label>
+    <input name="price">
+    <label> Imagen </label>
+    <input name="url"> 
+    <button>Enviar</button>
+</form>
+<a style="margin-top: 10rem; display: flex; margin-inline: 50rem; justify-content: center;" href="/api/products"> VER LOS PRODUCTOS</a>
+<script>
+    let form = document.getElementById('prodForm');
+    form.addEventListener('submit', evt => {
+        evt.preventDefault()
+        let data = new FormData(form)
+        console.log(data)
+        let obj = {};
+        data.forEach((value,key) => obj[key] = value)
+        fetch('/api/products', {
+            method: 'POST',
+            body:obj,            
+        }).then(result=> result.json()).then(json=>console.log(json))
+    })
+</script>

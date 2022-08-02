@@ -1,0 +1,12 @@
+
+<% if (products[0]) { %>
+    <% products.forEach(product => { %>
+        <p><%= product.name %></p>
+        <p><%= product.price %></p>
+        <p><%= product.url %></p>
+        <p><%= product.id %></p>
+    <% }) %>
+<% } else { %>
+    <p>No hay datos para mostrar</p> 
+<% }  %> 
+<a href="/">Volver</a> 

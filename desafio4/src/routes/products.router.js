@@ -76,7 +76,7 @@ router.delete('/:prodID', (req, res) => {
         let updateCheck
         for (const key in parsedData) {
             if (parsedData[key].id === req.params.prodID) {
-                parsedData[key] = {}
+                parsedData.splice(parsedData[key],1)
                 updateCheck = true
             } else {continue}
         } 

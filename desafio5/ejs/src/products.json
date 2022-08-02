@@ -1,0 +1,26 @@
+[
+	{
+		"name": "pescado",
+		"price": 200,
+		"url": "defaultUrl",
+		"id": "1"
+	},
+	{
+		"name": "papas",
+		"price": 300,
+		"url": "defaultURL",
+		"id": "2"
+	},
+	{
+		"name": "hamburguesa",
+		"price": 400,
+		"url": "defaultURL",
+		"id": "3"
+	},
+	{
+		"name": "pescado",
+		"price": 200,
+		"url": "defaultUrl",
+		"id": "4"
+	}
+]
