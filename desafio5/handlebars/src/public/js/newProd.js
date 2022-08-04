@@ -1,15 +1,4 @@
-<form id="prodForm" style="display: flex; flex-direction: column; margin-inline: 50rem; align-items: center;">
-    <label >Nombre</label>
-    <input id="name" name="name">
-    <label >Precio</label>
-    <input id="price" name="price">
-    <label> Imagen </label>
-    <input id="url" name="url"> 
-    <button type="submit">Enviar</button>
-</form>
-<a style="margin-top: 10rem; display: flex; margin-inline: 50rem; justify-content: center;" href="/api/products"> VER LOS PRODUCTOS</a>
-<script>
-    let form = document.getElementById('prodForm');
+let form = document.getElementById('prodForm');
     form.addEventListener('submit', evt => {
         evt.preventDefault()
         let name = document.getElementById('name').value
@@ -29,4 +18,3 @@
                 }            
         }).then(result=> result.json()).then(json=>console.log(json))
     })
-</script>
