@@ -1,0 +1,3 @@
+El que mas me gustó fue ejs, parece feo pero los snippet ayudan un monton, me gusto que pueda usar js directo y no uno basado como en handlebars. 
+Pug la verdad no me gustó nada por la forma del etiquetado y de las identaciones, como se manejar el html me quedo con cualquiera de los otros dos. 
+Muy probablemente siga usando ejs en los proximos proyectos aunque si el profe usa hb para los ejemplos veré lo que me resulte mas sencillo porque tampoco me disgusta.
