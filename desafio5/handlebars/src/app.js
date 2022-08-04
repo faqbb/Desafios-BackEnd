@@ -16,7 +16,7 @@ app.set('views', __dirname+'/views')
 app.set('view engine','handlebars')
 
 app.get('/' , (req,res) => {
-    res.render('form',{})
+    res.render('pugForm',{})
 })
 
 app.use('/api/products', productRouter )

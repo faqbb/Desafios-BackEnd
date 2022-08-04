@@ -1,0 +1,15 @@
+html
+    head
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover")
+        title='Pagina Pug'
+    body 
+        form(id="prodForm" style="display: flex; flex-direction: column; margin-inline: 50rem; align-items: center;")
+            label(for="name") Nombre
+            input(id="name" name="name")
+            label(for="price") Precio
+            input(id='price', name="price")
+            label(for="url") Imagen 
+            input(id='url', name="url")
+            button(type="submit") Enviar
+        a(style="margin-top: 10rem; display: flex; margin-inline: 50rem; justify-content: center;", href="/api/products") VER LOS PRODUCTOS
+        script(src="js/newProd.js")
