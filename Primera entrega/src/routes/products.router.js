@@ -18,6 +18,18 @@ router.get('/', async (req,res) => {
     } catch (error)  {console.log(error)}
 })
 
+router.get('/:id', async (req,res) => {
+    try {
+        let propId = req.params.id
+        let product = await productManager.getById(propId, path)
+        if (!(product)) {
+            res.status(404).send({error: 'Failed to read data'})
+        } else {
+            res.send(product)
+        }
+    } catch (error)  {console.log(error)}
+})
+
 router.post('/', async(req, res) => {
     try {
         if(adminStatus === true) {

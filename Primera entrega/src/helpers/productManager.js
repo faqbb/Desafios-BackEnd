@@ -53,7 +53,9 @@ class Manager {
         try {
             let items = await this.getAll(path)
                 if(items.find(item => item.id == idprop)) {
-                    let filteredItems = items.filter( item => item.id === idprop)
+                    let targetItem = items.find(item => item.id == idprop)
+                    let filteredItems = items.splice(targetItem.id, 1)
+                    console.log(filteredItems)
                     await fs.promises.writeFile(path, JSON.stringify(filteredItems,null,'\t'))
                 }
         } catch (error) {console.log('Cannot read file'+ error)}

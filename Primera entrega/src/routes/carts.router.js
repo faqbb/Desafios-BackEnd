@@ -5,6 +5,16 @@ const router = Router()
 const productManager = new Manager
 const path ='./src/res/readable/carts.json'
 
+router.get('/', async (req,res) => {
+    try {
+        let carts = await productManager.getAll(path)
+        if (!(carts)) {
+            res.status(404).send({error: 'Failed to read data'})
+        } else {
+            res.send({carts})
+        }
+    } catch (error)  {console.log(error)}
+})
 router.post('/', async(req,res) => {
     try {
         let carts = await productManager.getAll(path)
