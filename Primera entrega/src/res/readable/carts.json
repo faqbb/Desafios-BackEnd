@@ -1,0 +1,17 @@
+[
+	{
+		"id": 1,
+		"timestamp": 1660601169603,
+		"products": [
+			{
+				"name": "pescado 2",
+				"desc": "no es pez porque ya lo pescaron",
+				"price": 200,
+				"url": "defaultUrl2",
+				"stock": 4,
+				"id": 1,
+				"timestamp": 1660602002580
+			}
+		]
+	}
+]

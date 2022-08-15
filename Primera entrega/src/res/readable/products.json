@@ -1,0 +1,9 @@
+[
+	{
+		"name": "pescado 2",
+		"desc": "no es pez porque ya lo pescaron",
+		"price": 200,
+		"url": "defaultUrl2",
+		"stock": 4
+	}
+]

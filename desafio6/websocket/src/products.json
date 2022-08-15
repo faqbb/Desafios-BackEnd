@@ -22,5 +22,17 @@
 		"price": 200,
 		"url": "defaultUrl",
 		"id": "4"
+	},
+	{
+		"name": "carne",
+		"price": "200",
+		"url": "defaulturl",
+		"id": "5"
+	},
+	{
+		"name": "milanesa",
+		"price": "300",
+		"url": "defaulturl",
+		"id": "6"
 	}
 ]
