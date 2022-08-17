@@ -1,16 +1,21 @@
 const socket = io.connect()
-socket.on('messages', data => {
-    console.log(data)
-})
 
 function render(data) {
-    const html = data.map((elem, index) =>{
-        return(`<div>
-                    <strong>${elem.author}</strong> <span>${elem.date}</span>:
-                    <em>${elem.message}</em>
-                </div>`)
-    }).join(" ")
-    document.getElementById('messages').innerHTML = html
+    try {
+        console.log(data)
+        if(!(data.lenght)) {
+        const html = data.map((elem, index) =>{
+            return(`<div>
+            <strong>${elem.author}</strong> <span>${elem.date}</span>:
+            <em>${elem.message}</em>
+            </div>`)
+        }).join(" ")
+        document.getElementById('messages').innerHTML = html
+        } else {
+            const html = 'No hay mensajes para mostrar'
+            document.getElementById('messages').innerHTML = html
+        }
+    } catch (error) { console.log(error)}
 }
 socket.on('messages', function(data) {render(data)})
 
@@ -25,17 +30,14 @@ const addMessage = () => {
 }
 // PRODUCTOS
 function renderProds(prods) {
-    const html = ""
-    if (prods.lenght) {
-         html = prods.map((elem, index) =>{
+    const html = prods.map((elem, index) =>{
             return(`<ul class="d-flex justify-content-between list-unstyled mx-5 text-light h6">
             <li>${elem.name}</li>
             <li>${elem.price}</li>
             <li>${elem.url}</li>
             <li>${elem.id}</li>
             </ul>    `)
-        }).join(" ")}
-    console.log(html)
+        }).join(" ")
     document.getElementById('products').innerHTML = html
 }
 const addProduct = () => {

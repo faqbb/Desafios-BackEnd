@@ -1,20 +1,19 @@
 
-import options from '../options/mariaDB.js'
+import options from '../options/SQlite3.js'
 import knex from 'knex'
 
 const database = knex(options)
-class pManager {
+class mManager {
     getAll = async () => {
         try {
-            if(await database.schema.hasTable('products')) {
-                let products = await database('products').select('*')
+            if(await database.schema.hasTable('messages')) {
+                let products = await database('messages').select('*')
                 return products
             } else {
-                await database.schema.createTable('products', table => {
-                    table.increments('id')
-                    table.string('name')
-                    table.integer('price')
-                    table.string('url')
+                await database.schema.createTable('messages', table => {
+                    table.string('author')
+                    table.string('message')
+                    table.string('date')
                 }).then(() => console.log('table created'))
                 .catch((error) => {console.log(error); throw error}).finally(() => {database.destroy()})
             }
@@ -22,11 +21,11 @@ class pManager {
     }
     addItem = async(item) => {
         try {
-                await database('products').insert(item)
+                await database('messages').insert(item)
         } catch (error)  {console.log('Cannot reach database '+ error)}
     }
 }
 
-export default pManager
+export default mManager
 
 
