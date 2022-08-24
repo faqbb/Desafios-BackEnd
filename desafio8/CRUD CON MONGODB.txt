@@ -1,0 +1,399 @@
+##4)
+products> db.coll.find()
+[
+  {
+    _id: ObjectId("63069ca6724aa388732da7ec"),
+    name: 'pescado',
+    price: 120,
+    url: 'defaulturl1'
+  },
+  {
+    _id: ObjectId("63069d03724aa388732da7ed"),
+    name: 'carne',
+    price: 170,
+    url: 'defaulturl2'
+  },
+  {
+    _id: ObjectId("63069d28724aa388732da7ee"),
+    name: 'papas',
+    price: 200,
+    url: 'defaulturl3'
+  },
+  {
+    _id: ObjectId("63069d41724aa388732da7ef"),
+    name: 'mariscos',
+    price: 700,
+    url: 'defaulturl4'
+  },
+  {
+    _id: ObjectId("63069d5f724aa388732da7f0"),
+    name: 'papas con queso',
+    price: 1200,
+    url: 'defaulturl5'
+  },
+  {
+    _id: ObjectId("63069d79724aa388732da7f1"),
+    name: 'yogurt',
+    price: 2000,
+    url: 'defaulturl6'
+  },
+  {
+    _id: ObjectId("63069db3724aa388732da7f2"),
+    name: 'huevos de pascua',
+    price: 3240,
+    url: 'defaulturl7'
+  },
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8'
+  },
+  {
+    _id: ObjectId("63069df6724aa388732da7f4"),
+    name: 'pescado con papas',
+    price: 4125,
+    url: 'defaulturl9'
+  },
+  {
+    _id: ObjectId("63069e10724aa388732da7f5"),
+    name: 'carne con chocolate',
+    price: 4600,
+    url: 'defaulturl10'
+  }
+]
+messages> db.coll.find()
+[
+  {
+    _id: ObjectId("63069efe724aa388732da7f6"),
+    author: 'juan@gmail.com',
+    message: 'Hola'
+  },
+  {
+    _id: ObjectId("63069f18724aa388732da7f7"),
+    author: 'manuel@gmail.com',
+    message: '¿Como estas Juan?'
+  },
+  {
+    _id: ObjectId("63069f2d724aa388732da7f8"),
+    author: 'juan@gmail.com',
+    message: 'Bien ¿Y vos?'
+  },
+  {
+    _id: ObjectId("63069f3d724aa388732da7f9"),
+    author: 'manuel@gmail.com',
+    message: 'Bien por suerte'
+  }
+]
+
+
+
+##5)
+a)
+products> db.coll.insert({ name: "carne con chocolate", price: 4600, url: "defaulturl10" })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("63069e10724aa388732da7f5") }
+}
+
+
+
+
+b)products> db.coll.find({"price": {$lt: 1000}})
+[
+  {
+    _id: ObjectId("63069ca6724aa388732da7ec"),
+    name: 'pescado',
+    price: 120,
+    url: 'defaulturl1'
+  },
+  {
+    _id: ObjectId("63069d03724aa388732da7ed"),
+    name: 'carne',
+    price: 170,
+    url: 'defaulturl2'
+  },
+  {
+    _id: ObjectId("63069d28724aa388732da7ee"),
+    name: 'papas',
+    price: 200,
+    url: 'defaulturl3'
+  },
+  {
+    _id: ObjectId("63069d41724aa388732da7ef"),
+    name: 'mariscos',
+    price: 700,
+    url: 'defaulturl4'
+  }
+]
+products> db.coll.find({$and:[{"price": {$gt: 1000}}, {"price": {$lt:3000}}]})
+[
+  {
+    _id: ObjectId("63069d5f724aa388732da7f0"),
+    name: 'papas con queso',
+    price: 1200,
+    url: 'defaulturl5'
+  },
+  {
+    _id: ObjectId("63069d79724aa388732da7f1"),
+    name: 'yogurt',
+    price: 2000,
+    url: 'defaulturl6'
+  }
+]
+products> db.coll.find({"price": {$gt: 3000}})
+[
+  {
+    _id: ObjectId("63069db3724aa388732da7f2"),
+    name: 'huevos de pascua',
+    price: 3240,
+    url: 'defaulturl7',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069df6724aa388732da7f4"),
+    name: 'pescado con papas',
+    price: 4125,
+    url: 'defaulturl9',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069e10724aa388732da7f5"),
+    name: 'carne con chocolate',
+    price: 4600,
+    url: 'defaulturl10',
+    stock: 100
+  }
+]
+products> db.coll.find({}).sort({"price":-1}).skip(2).limit(1)
+[
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8',
+    stock: 100
+  }
+]
+
+
+c)products> db.coll.updateMany({"_id":{$exists:true}}, {$set: {"stock": 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 10,
+  modifiedCount: 10,
+  upsertedCount: 0
+}
+products> db.coll.find()
+[
+  {
+    _id: ObjectId("63069ca6724aa388732da7ec"),
+    name: 'pescado',
+    price: 120,
+    url: 'defaulturl1',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d03724aa388732da7ed"),
+    name: 'carne',
+    price: 170,
+    url: 'defaulturl2',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d28724aa388732da7ee"),
+    name: 'papas',
+    price: 200,
+    url: 'defaulturl3',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d41724aa388732da7ef"),
+    name: 'mariscos',
+    price: 700,
+    url: 'defaulturl4',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d5f724aa388732da7f0"),
+    name: 'papas con queso',
+    price: 1200,
+    url: 'defaulturl5',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d79724aa388732da7f1"),
+    name: 'yogurt',
+    price: 2000,
+    url: 'defaulturl6',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069db3724aa388732da7f2"),
+    name: 'huevos de pascua',
+    price: 3240,
+    url: 'defaulturl7',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069df6724aa388732da7f4"),
+    name: 'pescado con papas',
+    price: 4125,
+    url: 'defaulturl9',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069e10724aa388732da7f5"),
+    name: 'carne con chocolate',
+    price: 4600,
+    url: 'defaulturl10',
+    stock: 100
+  }
+]
+
+
+d)products> db.coll.updateMany({"price":{$gt: 4000}}, {$set: {"stock": 0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+products> db.coll.find()
+[
+  {
+    _id: ObjectId("63069ca6724aa388732da7ec"),
+    name: 'pescado',
+    price: 120,
+    url: 'defaulturl1',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d03724aa388732da7ed"),
+    name: 'carne',
+    price: 170,
+    url: 'defaulturl2',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d28724aa388732da7ee"),
+    name: 'papas',
+    price: 200,
+    url: 'defaulturl3',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d41724aa388732da7ef"),
+    name: 'mariscos',
+    price: 700,
+    url: 'defaulturl4',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d5f724aa388732da7f0"),
+    name: 'papas con queso',
+    price: 1200,
+    url: 'defaulturl5',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d79724aa388732da7f1"),
+    name: 'yogurt',
+    price: 2000,
+    url: 'defaulturl6',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069db3724aa388732da7f2"),
+    name: 'huevos de pascua',
+    price: 3240,
+    url: 'defaulturl7',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069df6724aa388732da7f4"),
+    name: 'pescado con papas',
+    price: 4125,
+    url: 'defaulturl9',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63069e10724aa388732da7f5"),
+    name: 'carne con chocolate',
+    price: 4600,
+    url: 'defaulturl10',
+    stock: 0
+  }
+]
+
+
+e)products> db.coll.deleteMany({"price":{$lt: 1000}})
+{ acknowledged: true, deletedCount: 4 }
+products> db.coll.find()
+[
+  {
+    _id: ObjectId("63069d5f724aa388732da7f0"),
+    name: 'papas con queso',
+    price: 1200,
+    url: 'defaulturl5',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069d79724aa388732da7f1"),
+    name: 'yogurt',
+    price: 2000,
+    url: 'defaulturl6',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069db3724aa388732da7f2"),
+    name: 'huevos de pascua',
+    price: 3240,
+    url: 'defaulturl7',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069dd8724aa388732da7f3"),
+    name: 'pote dulce de leche',
+    price: 3522,
+    url: 'defaulturl8',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63069df6724aa388732da7f4"),
+    name: 'pescado con papas',
+    price: 4125,
+    url: 'defaulturl9',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63069e10724aa388732da7f5"),
+    name: 'carne con chocolate',
+    price: 4600,
+    url: 'defaulturl10',
+    stock: 0
+  }
+]
