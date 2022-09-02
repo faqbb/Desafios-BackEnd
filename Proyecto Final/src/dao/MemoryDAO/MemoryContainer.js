@@ -1,6 +1,6 @@
 export default class MemoryContainer {
     constructor(data){
-        if (data.lenght){
+        if (data){
             this.data = data
         } else {
             this.data = []
@@ -25,7 +25,7 @@ export default class MemoryContainer {
     }
     getById = () => {
         try {
-            let items = await this.getAll()
+            let items = this.getAll()
             let targetItem = items.find( item => item.id == idprop)
             return targetItem
         } catch (error) {console.log('Cannot reach item '+ error)}

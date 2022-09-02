@@ -1,5 +1,5 @@
 import FilesContainer from "./FilesContainer.js";
-const cartsPath = '../../res/readable/carts.json'
+const cartsPath = 'src/res/readable/carts.json'
 
 export default class carts extends FilesContainer {
     constructor(){

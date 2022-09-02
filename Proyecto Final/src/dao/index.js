@@ -1,4 +1,4 @@
-const persistence = "MEMORY"
+const persistence = "FILES"
 let productsService
 let cartsService
 
@@ -9,7 +9,7 @@ switch(persistence){
         productsService = new MemProducts()
         cartsService = new  MemCarts()
         break
-    case "M0NGODB":
+    case "MONGODB":
         const {default: MongoProducts} = await import('./MongoDAO/Products.js')
         const {default: MongoCarts} = await import('./MongoDAO/Carts.js')
         productsService = new MongoProducts()

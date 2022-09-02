@@ -32,6 +32,8 @@ router.post('/:id/products', async(req,res) =>{
         let propId = req.params.id
         let newProd = req.body
         await services.cartsService.updateProdInCart(propId, newProd)
+        let result = await services.cartsService.getAll()
+        res.send(result)
     } catch (error) {console.log(error)}
 })
 
