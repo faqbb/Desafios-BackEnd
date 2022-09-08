@@ -5,9 +5,9 @@ const collection='products'
 const productsSchema = mongoose.Schema({
     name:String,
     price:Number,
-    description:String,
-    category:String,
-    imageUrl:String
+    description: String,
+    category: String,
+    imageUrl: String
 })
 
 export default class products extends MongoDBContainer {
