@@ -4,10 +4,12 @@ import __dirname from './utils.js';
 import services from './dao/MongoDAO/handlers.js';
 import getRandomMessages from '../utils/messageGenerator.js';
 import getRandomProducts from '../utils/productGenerator.js';
+import { addProduct, addMessage } from '../../desafio6/websocket/public/main.js';
 
 const app = express()
 const server = app.listen(8080, () => console.log('Listening on 8080'))
 const io = new Server(server)
+export default io
 
 
 app.use(express.static('public'))

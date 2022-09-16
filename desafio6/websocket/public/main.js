@@ -1,3 +1,5 @@
+
+const {io} = await import('../src/app.js')
 const socket = io.connect()
 socket.on('messages', data => {
     console.log(data)
@@ -23,6 +25,8 @@ const addMessage = () => {
     socket.emit('new-message', message);
     return false
 }
+
+export {addMessage}
 // PRODUCTOS
 function renderProds(prods) {
     const html = prods.map((elem, index) =>{
@@ -45,5 +49,7 @@ const addProduct = () => {
     socket.emit('new-product', product)
     return false
 }
+
+export {addProduct}
 
 socket.on('products', function(parseData) {renderProds(parseData)})
