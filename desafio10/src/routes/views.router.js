@@ -10,4 +10,7 @@ router.get('/api/register', (req, res) => {
 router.get('/api/login', (req, res) => {
     res.render('login')
 })
+router.get('/api/user', (req,res) => {
+    res.render('user')
+})
 export default router

@@ -6,9 +6,6 @@ form.addEventListener('submit', evt =>{
     data.forEach((value,key) => obj[key]= value);
     fetch('/api/register', {
         method:'POST',
-        body: JSON.stringify(obj),
-        headers: {
-            "Content-Type": "application/json"
-        }
+        body: JSON.stringify(obj)
     }).then(result =>result.json()).then(json=>console.log(json))
 })
