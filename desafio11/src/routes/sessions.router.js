@@ -5,10 +5,10 @@ import passport from "passport";
 
 const router = Router()
 
-router.post('/register', passport.authenticate('register',{failureRedirect:'/registerfail'}), async (req, res) => {
+router.post('/register', passport.authenticate('register',{failureRedirect:'/api/registerfail'}), async (req, res) => {
     res.send(result)
 })
-router.post('/login',passport.authenticate('login',{failureRedirect:'/loginfail'}), async (req, res) => {
+router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginfail'}), async (req, res) => {
             req.session.user = {
                 name: req.user.name,
                 email: req.user.email,
@@ -24,20 +24,26 @@ router.get('/user', (req,res) =>{
     }
     else {
         res.status(400).send({status:"error", error: "User not logged in"})
-        res.redirect('/login')
+        res.redirect('/api/login')
     }
 })
 
 router.get('/logout', (req,res) =>{
     req.session.destroy()
-    res.redirect('../home')
+    res.redirect('/')
 })
 
-router.get('/github', (req,res) =>{
-
+router.get('/github', passport.authenticate('github', {scope:[]}), async(req,res) =>{
+    console.log('aver')
 })
 
-router.get('/githubcallback', (req,res) =>{
-    
+router.get('/githubcallback', passport.authenticate('github'), (req,res) =>{
+    req.session.user = {
+        name:req.user.name,
+        email:req.user.email,
+        id:req.user._id
+    }
+    res.redirect('/api/user')
 })
+
 export default router

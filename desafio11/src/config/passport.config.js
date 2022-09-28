@@ -28,17 +28,30 @@ const initializePassport = () => {
         if(!email||!password) return done(null,false,{message:"Incomplete values"})
         let user = await userService.findOne({email:email})
         if(!user) return done(null,false,{message:"User not found"})
-        if (!isValidPassword(exists, password)) return done(null, false, {message:"Incorrect password"})
+        if (!isValidPassword(user, password)) return done(null, false, {message:"Incorrect password"})
         return done(null, user)
     }))
 
     passport.use('github', new GitHubStrategy({
         clientID: 'Iv1.49dada7375e86952',
         clientSecret: '161800cfcaf1d780976ec134e273eb8ac96c1038',
-        callbackURL: 'https://localhost:8080/api/githubcallback'
+        callbackURL: 'http://localhost:8080/api/githubcallback'
     },async(accessToken, refreshToken, profile, done) => {
-        console.log(profile)
+        const {name, email} = profile._json
+        let user = await userService.findOne({email:email})
+        if(!user){
+            let newUser = {
+                name,
+                email,
+                password:'',
+            }
+            let result = await userService.create(newUser)
+            return done(null,result)
+        }else{
+            return done(null,user)
+        }
     }))
+
     passport.serializeUser((user,done) => {
            done(null, user._id)
         })
