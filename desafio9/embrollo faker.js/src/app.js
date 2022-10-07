@@ -4,7 +4,8 @@ import __dirname from './utils.js';
 import services from './dao/MongoDAO/handlers.js';
 import getRandomMessages from '../utils/messageGenerator.js';
 import getRandomProducts from '../utils/productGenerator.js';
-import { addProduct, addMessage } from '../../desafio6/websocket/public/main.js';
+import { normalize, schema } from 'normalizr';
+
 
 const app = express()
 const server = app.listen(8080, () => console.log('Listening on 8080'))
@@ -49,7 +50,18 @@ app.get('/', async (req,res) =>  {
 app.post('/', async (req,res) => {
     let product = getRandomProducts(1)
     await services.productService.add(product)
-    await services.productService.deleteById('631a5234920ff5ffb3681556')
     let products = await services.productService.getAll()
     res.send(products)
+})
+
+app.get('/normalize/msg', async(req, res) =>{
+    const authorSchema = new schema.Entity('authors')
+    const textSchema = new schema.Entity('texts')
+    const messageSchema = new schema.Entity('messages', {
+        author: authorSchema,
+        text: textSchema
+    })
+    let messages = await services.messageService.getAll()
+    const normalizedMessages = normalize(messages, messageSchema)
+    res.send(normalizedMessages)
 })
