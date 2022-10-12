@@ -14,7 +14,8 @@ router.post('/register', async (req, res) => {
         password
     }
     let result = await userService.create(newUser)
-    res.json(result)
+    res.setHeader('Content-Type', 'text/html')
+    res.redirect('user')
 })
 router.post('/login', async (req, res) => {
     const {name, email, password} = req.body

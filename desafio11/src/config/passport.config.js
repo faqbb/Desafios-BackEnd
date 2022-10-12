@@ -21,6 +21,7 @@ const initializePassport = () => {
                 password:createHash(password)
             }
         let result = await userService.create(newUser)
+        console.log(result)
         return done(null,result)
     }))
 

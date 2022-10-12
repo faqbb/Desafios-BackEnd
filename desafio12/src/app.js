@@ -1,13 +1,17 @@
 import express from "express";
 import config from "./config/indexYargs.js";
-import mainConfig from "./config/mainConfig.js";
+import {fork} from "child_process"
 
 const app = express()
 
 const server = app.listen(config.port, () => {console.log(`Listening on ${config.port}`)})
 
-app.get('/', (req, res) =>{
-    res.send('holaa')
+app.get('/api/randoms', (req, res) => {
+    const child = fork('./src/randomNum.js')
+        child.send('hola soy goku')
+        child.on('message', val =>{
+            res.send(`el resultado es ${val}`)
+        })
 })
 
 app.get('/info', (req, res) =>{
@@ -17,7 +21,7 @@ app.get('/info', (req, res) =>{
         OS: process.env.OS,
         PID: process.pid,
         nodeV: process.versions.node,
-        root: "?",
+        root: "?", // no encontre ninguna propiedad de process que me decuelva la carpeta desafio12 
         rss: process.memoryUsage.rss()
     }
     res.send(processInfo)

@@ -6,7 +6,7 @@ import passport from "passport";
 const router = Router()
 
 router.post('/register', passport.authenticate('register',{failureRedirect:'/api/registerfail'}), async (req, res) => {
-    res.send(result)
+    console.log('hola')
 })
 router.post('/login',passport.authenticate('login',{failureRedirect:'/api/loginfail'}), async (req, res) => {
             req.session.user = {
