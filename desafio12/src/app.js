@@ -21,7 +21,6 @@ app.get('/info', (req, res) =>{
         OS: process.env.OS,
         PID: process.pid,
         nodeV: process.versions.node,
-        root: "?", // no encontre ninguna propiedad de process que me decuelva la carpeta desafio12 
         rss: process.memoryUsage.rss()
     }
     res.send(processInfo)
